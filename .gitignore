@@ -6,6 +6,21 @@ __pycache__/
 # C extensions
 *.so
 
+# Save files
+*.sav
+*.srm
+*.eep
+*.sra
+*.fla
+*.mpk
+
+# Rom images
+*.z64
+*.n64
+*.gb
+*.gbc
+*.gba
+
 # Distribution / packaging
 .Python
 build/
