@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# Save Database
+N64-database.txt
+
 # Save files
 *.sav
 *.srm
@@ -13,10 +16,13 @@ __pycache__/
 *.sra
 *.fla
 *.mpk
+*.rtc
+*.bak
 
 # Rom images
 *.z64
 *.n64
+*.v64
 *.gb
 *.gbc
 *.gba

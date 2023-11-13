@@ -83,11 +83,11 @@ dumpGBEnabled = False
 injectGBEnabled = False
 
 parser = argparse.ArgumentParser("convert_tpak_data.py")
-parser.add_argument("-n64", help="Input & Output N64 Save Path", nargs='?', default="N64_TPak.sav")
+parser.add_argument("-n64", help="Input & Output N64 Save Path", nargs='?', default="N64.sav")
 parser.add_argument("-gb", help="Input GB Save Path", nargs='?', default="GB_in.sav")
-parser.add_argument('-d', help="Flag to indicate if the GB save should be dumped from the N64 save", action='store_true', default=False)
-parser.add_argument('-i', help="Flag to indicate if the GB save should be injected into the N64 save", action='store_true', default=False)
-parser.add_argument("-exp", help="Path to export GB Save Dump from N64 Save", nargs='?', default="GB_out.sav")
+parser.add_argument('-d', help="Flag: The GB save should be dumped from the N64 save", action='store_true', default=False)
+parser.add_argument('-i', help="Flag: The GB save should be injected into the N64 save", action='store_true', default=False)
+parser.add_argument("-exp", help="Path to export GB Save Dump from the N64 Save", nargs='?', default="GB_out.sav")
 
 if len(sys.argv)==1:
     parser.print_help(sys.stderr)
@@ -95,8 +95,8 @@ if len(sys.argv)==1:
 
 args = parser.parse_args()
 
-if (args.n64 == "N64_TPak.sav" or args.n64 == None or args.n64 == ""):
-    savePathN64 = "N64_TPak.sav"
+if (args.n64 == "N64.sav" or args.n64 == None or args.n64 == ""):
+    savePathN64 = "N64.sav"
 else:
     savePathN64 = args.n64
 if (args.gb == "GB_in.sav" or args.gb == None or args.gb == ""):
