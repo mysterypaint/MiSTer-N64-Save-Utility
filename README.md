@@ -2,11 +2,12 @@
  A Python-based utility to inject and dump N64 ControllerPak/TransferPak saves for the MiSTer FPGA.
 
 ## Casual Usage (Windows Users only)
-1) Ensure that [Python](https://www.python.org/downloads/) is installed.
-2) Download the most recent version of [N64-Database.txt](https://raw.githubusercontent.com/MiSTer-devel/N64_ROM_Database/main/N64-database.txt) and place it in the same folder as ``convert_tpak_data.py``.
-3) Create a copy of ``Input_EXAMPLE.ini`` and then rename the copy to ``Input.ini``.
-4) Edit ``Input.ini`` in your favorite text editor. Please read all of the comments carefully as you fill it out!
-5) Double-click on ``launch.bat``. If you filled out the form correctly, your new save file should be at the path you specified for ``OutputSavePath``.
+1) [Download this repo](https://github.com/mysterypaint/MiSTer-N64-Save-Utility/archive/refs/heads/main.zip)
+2) Ensure that [Python](https://www.python.org/downloads/) is installed.
+3) Download the most recent version of [N64-Database.txt](https://raw.githubusercontent.com/MiSTer-devel/N64_ROM_Database/main/N64-database.txt) and place it in the same folder as ``convert_tpak_data.py``.
+4) Create a copy of ``Input_EXAMPLE.ini`` and then rename the copy to ``Input.ini``.
+5) Edit ``Input.ini`` in your favorite text editor. Please read all of the comments carefully as you fill it out!
+6) Double-click on ``launch.bat``. If you filled out the form correctly, your new save file should be at the path you specified for ``OutputSavePath``.
 
 ## Usage via Terminal/CLI
 ```usage: convert_tpak_data.py [-h] [-n64 [N64]] [-o [O]] [-cid [CID]] [-mpk [MPK]] [-gb [GB]] [-d] [-gi]```
