@@ -24,15 +24,40 @@ def populateN64Database():
                     romData = line.rstrip().split(":")[1].split(" ")
                     cartID = romData[0]
                     saveTypes = romData[1].split("|")
-                    N64Database.append([cartID, saveTypes])
+                    try:
+                        romName = line.split('#')[1].strip()
+                    except IndexError:
+                        romName = "Unknown Homebrew"
+                    N64Database.append([cartID, saveTypes, romName])
+                elif len(line) > 0:
+                    if not line.startswith("#") and not line.isspace():
+                        romData = line.rstrip().split(" ")
+                        md5Hash = romData[0]
+                        saveTypes = romData[1].split("|")
+                        romName = line.split('#')[1].strip()
+                        N64Database.append(["md5", md5Hash, saveTypes, romName])
         return N64Database
 
 def determineN64Flashsave(N64Database, inCartID):
-        print("Pulling database for: " + inCartID)
+        isMD5 = False
+        romName = "Unknown"
+
         for romData in N64Database:
-            if (romData[0] == inCartID):
+            if (romData[0] == "md5"):
+                if (romData[1] == inCartID):
+                    saveTypes = romData[2]
+                    romName = romData[3]
+                    isMD5 = True
+                    print("Using save structure for:", romName, "(" + inCartID + ")")
+                    break
+            elif (romData[0] == inCartID):
                 saveTypes = romData[1]
+                romName = romData[2]
+                print("Using save structure for:", romName, "(" + inCartID + ")")
                 break
+
+        # Could get region/security chip data here, if ever relevant (would use "isMD5")
+
         flashType = FlashSaves.NOTHING
         cPak = False
         tPak = False
@@ -129,20 +154,20 @@ def injectMPKSaves(savePathN64, savePathOut, mpkFiles, N64FlashSave):
             mpksToWriteString += " " + str(numMpks) + ": " + mpkFile.lstrip() + "  |  Flip bytes: " + str(flipMe) + "\n "
             numMpks += 1
         else:
-            mpksToWrite.append(["blank_cpak.cpak", False])
-            mpksToWriteString += " " + str(numMpks) + ": blank_cpak.cpak  |  Flip bytes: False\n "
+            mpksToWrite.append(["blank.cpak", False])
+            mpksToWriteString += " " + str(numMpks) + ": blank.cpak  |  Flip bytes: False\n "
             numMpks += 1
 
     
     # If we have any unassigned TPaks/CPaks, inject a pre-formatted empty Pak in its place
     while(numMpks < 4):
-        mpksToWrite.append(["blank_cpak.cpak", False])
-        mpksToWriteString += " " + str(numMpks) + ": blank_cpak.cpak  |  Flip bytes: False\n "
+        mpksToWrite.append(["blank.cpak", False])
+        mpksToWriteString += " " + str(numMpks) + ": blank.cpak  |  Flip bytes: False\n "
         numMpks += 1
 
     # Let the user know what we're doing
-    print("Injecting [C/T]Paks:\n", mpksToWriteString)
-    print("flashSize: ", flashSize)
+    print("\nInjecting [C/T]Paks:\n", mpksToWriteString)
+    print("Flash Size:", flashSize, "bytes")
 
     # Inject the data we've calculated/prepared, starting at the end of the Flash Save file. Each Pak save file is 0x8000 bytes long.
     injectRangeBegin = flashSize
