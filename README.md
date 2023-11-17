@@ -6,7 +6,7 @@
 2) Download the most recent version of [N64-Database.txt](https://raw.githubusercontent.com/MiSTer-devel/N64_ROM_Database/main/N64-database.txt) and place it in the same folder as ``convert_tpak_data.py``.
 3) Create a copy of ``Input_EXAMPLE.ini`` and then rename the copy to ``Input.ini``.
 4) Edit ``Input.ini`` in your favorite text editor. Please read all of the comments carefully as you fill it out!
-5) Double-click on ``launch.bat``. If you filled out the form correctly, your new save file should be at the path you specified for ``OutputN64SavePath``.
+5) Double-click on ``launch.bat``. If you filled out the form correctly, your new save file should be at the path you specified for ``OutputSavePath``.
 
 ## Usage via Terminal/CLI
 ```usage: convert_tpak_data.py [-h] [-n64 [N64]] [-o [O]] [-cid [CID]] [-mpk [MPK]] [-gb [GB]] [-d] [-gi]```
