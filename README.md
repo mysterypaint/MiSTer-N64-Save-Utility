@@ -2,7 +2,7 @@
  A Python-based utility to inject and dump N64 ControllerPak/TransferPak saves for the MiSTer FPGA.
 
 ## Casual Usage (Windows Users only)
-1) [Download this repo](https://github.com/mysterypaint/MiSTer-N64-Save-Utility/archive/refs/heads/main.zip)
+1) [Download this repo](https://github.com/mysterypaint/MiSTer-N64-Save-Utility/archive/refs/heads/main.zip) and extract its ``.zip`` archive contents anywhere on your PC.
 2) Ensure that [Python](https://www.python.org/downloads/) is installed.
 3) Download the most recent version of [N64-Database.txt](https://raw.githubusercontent.com/MiSTer-devel/N64_ROM_Database/main/N64-database.txt) and place it in the same folder as ``convert_tpak_data.py``.
 4) Create a copy of ``Input_EXAMPLE.ini`` and then rename the copy to ``Input.ini``.
