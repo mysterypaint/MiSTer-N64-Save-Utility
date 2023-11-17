@@ -1,1 +1,0 @@
-python convert_n64_savedata.py -i -n64 "N64.sav" -gb "GB_in.sav"
