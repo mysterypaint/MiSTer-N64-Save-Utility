@@ -55,6 +55,9 @@ def determineN64Flashsave(N64Database, inCartID):
                 romName = romData[2]
                 print("Using save structure for:", romName, "(" + inCartID + ")")
                 break
+        
+        if (romName == "Unknown"):
+            raise Exception("\n\nCould not identify the Cart ID: " + inCartID + "\nPlease either ensure you entered it correctly in Input.ini, or manually add it to N64-Database.txt")
 
         # Could get region/security chip data here, if ever relevant (would use "isMD5")
 
@@ -344,7 +347,7 @@ else:
 N64FlashSave = FlashSaves.NOTHING
 if os.path.isfile(savePathN64In):
     if (inCartID == ''):
-        raise Exception("Aborting. Please provide a Cart ID using: -cid CART_ID_HERE")
+        raise Exception("Aborting: Please provide a Cart ID.")
     N64Database = populateN64Database()
     
     # Returns array: [flashType, cPak, tPak, rPak, rtc]
