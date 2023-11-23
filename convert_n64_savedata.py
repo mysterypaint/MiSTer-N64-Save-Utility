@@ -3,7 +3,7 @@ from enum import Enum
 from pathlib import Path
 
 SaveState = Enum('SaveState', ['NO_INJECTION', 'HAS_INJECTION', 'INVALID'])
-FlashSaves = Enum('FlashSaves', ['EEPROM_512', 'EEPROM_2K', 'SRAM_32K', 'FLASH_128K', 'NOTHING'])
+FlashSaves = Enum('FlashSaves', ['EEPROM_512', 'EEPROM_2K', 'SRAM_32K', 'SRAM_96K', 'FLASH_128K', 'NOTHING'])
 
 def cleanIniData(strIn):
     return strIn.split(";")[0].strip()
@@ -75,6 +75,8 @@ def determineN64Flashsave(N64Database, inCartID):
                     flashType = FlashSaves.EEPROM_2K
                 case "sram32k":
                     flashType = FlashSaves.SRAM_32K
+                case "sram96k":
+                    flashType = FlashSaves.SRAM_96K
                 case "flash128k":
                     flashType = FlashSaves.FLASH_128K
                 case "cpak":
@@ -97,6 +99,8 @@ def padN64Save(savePathN64, flashSave):
             flashSize = 0x800
         case FlashSaves.SRAM_32K:
             flashSize = 0x8000
+        case FlashSaves.SRAM_96K:
+            flashSize = 0x18000
         case FlashSaves.FLASH_128K:
             flashSize = 0x20000
     
@@ -125,6 +129,8 @@ def dumpPakSaves(savePathN64, savePathOut, N64FlashSave):
                 flashSize = 0x800
             case FlashSaves.SRAM_32K:
                 flashSize = 0x8000
+            case FlashSaves.SRAM_96K:
+                flashSize = 0x18000
             case FlashSaves.FLASH_128K:
                 flashSize = 0x20000
         
@@ -355,7 +361,7 @@ if os.path.isfile(savePathN64In):
                 print("Injecting MPK Save(s) into: " + savePathOut)
                 injectMPKSaves(savePathN64In, savePathOut, mpkFiles, FlashSaves.NOTHING)
             exit
-        case FlashSaves.EEPROM_512 | FlashSaves.EEPROM_2K | FlashSaves.SRAM_32K | FlashSaves.FLASH_128K:
+        case FlashSaves.EEPROM_512 | FlashSaves.EEPROM_2K | FlashSaves.SRAM_32K | FlashSaves.SRAM_96K | FlashSaves.FLASH_128K:
             if (dumpMPKEnabled):
                 print("Dumping Pak Saves from: " + savePathN64In)
                 dumpPakSaves(savePathN64In, savePathOut, N64FlashSave)
