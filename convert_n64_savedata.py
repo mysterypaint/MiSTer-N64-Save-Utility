@@ -30,7 +30,7 @@ def populateN64Database():
                         romName = "Unknown Homebrew"
                     N64Database.append([cartID, saveTypes, romName])
                 elif len(line) > 0:
-                    if not line.startswith("#") and not line.isspace():
+                    if not line.startswith("#") and not line.isspace() and "#" in line:
                         romData = line.rstrip().split(" ")
                         md5Hash = romData[0]
                         saveTypes = romData[1].split("|")
